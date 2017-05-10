@@ -1,0 +1,209 @@
+<!doctype html><!-- 声明当前文档的类型（html (html5 向下兼容模式 兼容低版本) ）-->
+<html lang="en">
+<head><!-- 网页信息 浏览器 搜索引擎 不可视区域 -->
+	<meta charset="UTF-8"><!-- 声明当前页面编码集 国际编码utf-8,中文编码gb312 服务器 -->
+	<title>天猫商城</title><!--  规定网页标题 -->
+	<script src="js/jquery.js"></script>
+	<script src="js/tz_fly.js"></script>
+</head>
+<style>
+	*{
+		padding:0;margin:0;
+		list-style: none;
+	}
+	.banner{
+		/*width: 100%;*/height:160px;
+		background: url(images/banner.jpg);
+		background-position: center top;/*有两个值，一个是水平，垂直*/
+	}
+	.prct{
+		width:1000px;
+		height:360px;
+		margin:50px auto 0;/*上，左右自适应居中 下*/
+	}
+	.prct ul .box{
+		width:220px;height:290px;
+		border:1px solid #ccc;
+		float: left;
+		margin:0 6px;
+		padding:5px;
+		background:#fff;
+	}
+	.prct ul .box img{
+		width: 220px;height:220px;
+	}
+	.prct ul .box .title{
+		color:#666;
+		font-size: 12px;
+		line-height: 20px;
+	}
+	.prct ul .box .money{
+		color:red;
+		float: left;
+		margin-top: 10px;
+	}
+	.prct ul .box .add-btn{
+		background: red;
+		color:#fff;
+		float: right;
+		padding:5px 10px;
+		margin-top: 10px;
+		border-radius: 5px;
+		font-size: 14px;
+		cursor: pointer;
+	}
+
+	.car{
+		width:260px;height:100%;
+		position: fixed;
+		right:-220px;top:0;
+	}
+	.car .left{
+		width:40px;height:100%;
+		background: #000;
+		float: left;
+	}
+	.car .right{
+		width: 220px;
+		height: 100%;
+		background: #ccc;
+		float: right;
+	}
+	.car .left span{
+		color:#fff;
+		display: block;
+		width: 12px;
+		font-size: 12px;
+		background: red;
+		padding:15px 14px;
+		cursor: pointer;
+		margin-top:300px;
+	}
+	.car .right dl dt img{
+		width: 60px;height:50px;
+	}
+	.car .right dl dt{
+		float: left;
+	}
+	.car .right dl dd{
+		float: right;
+		width: 140px;
+		font-size: 12px;
+		line-height: 20px;
+	}
+	.car .right dl{
+		height:60px;
+		border-bottom: 1px solid #fff;
+		padding:5px 5px;
+	}
+	.fly{
+		width: 50px;height:50px;
+		border-radius: 50%;
+	}
+</style>
+<body>
+	<!-- 网页三要素
+		标题  关键词  描述
+		今天讲到很多优化贡多
+
+		网页信息
+		<meta name="keywords" content="关键词">
+
+		<meta name="description" content="描述">
+		概括网页信息的
+		src叫做标签属性，url是样式属性，两者没有区别
+	 -->
+
+	 <div class="banner"></div>
+	 	<!-- 自适应的图片一般都是用背景图片去做 -->
+	 <div class="prct">
+	 	<ul>
+	 		<li class="box">
+	 			<img src="images/1.jpg" alt="" width="430" height="430">
+	 			<p class="title">2015夏季新品海澜之家</p>
+	 			<span class="money">￥115</span>
+	 			<span class="add-btn">添加购物车</span>
+	 		</li>
+	 		<li class="box">
+	 			<img src="images/2.jpg" alt="" width="430" height="430">
+	 			<p class="title">2015夏季新品海澜之家</p>
+	 			<span class="money">￥115</span>
+	 			<span class="add-btn">添加购物车</span>
+	 		</li>
+	 		<li class="box">
+	 			<img src="images/3.jpg" alt="" width="430" height="430">
+	 			<p class="title">2015夏季新品海澜之家</p>
+	 			<span class="money">￥115</span>
+	 			<span class="add-btn">添加购物车</span>
+	 		</li>
+	 		<li class="box">
+	 			<img src="images/4.jpg" alt="" width="430" height="430">
+	 			<p class="title">2015夏季新品海澜之家</p>
+	 			<span class="money">￥115</span>
+	 			<span class="add-btn">添加购物车</span>
+	 		</li>
+	 	</ul>
+	 </div>
+	 <!-- 给相片在行内写上宽高，是为了读取速度快 -->
+	 <div class="car">
+	 	<div class="left">
+	 		<span class="btn">添加购物车</span>
+	 	</div>
+	 	<div class="right">
+	 		<dl>
+	 			<dt>
+	 				<img src="images/1.jpg" alt="" width="430" height="430">
+	 			</dt>
+	 			<dd>2015夏季新品海澜之家</dd>
+	 			<dd>￥155</dd>
+	 		</dl>
+	 	</div>
+	 </div>
+</body>
+<script>
+	// 购物车点击
+	var offon=true;
+	$(".btn").click(function(){
+		if(offon){
+			$(".car").animate({right:0},500);
+			offon=false;
+		}else{
+			$(".car").animate({right:"-220px"},500);
+			offon=true;
+		}
+
+	})
+	$(".add-btn").click(function(e){
+			var imgsrc=$(this).siblings("img").attr("src");
+			var txt=$(this).siblings(".title").html();
+			var money=$(this).siblings(".money").html();
+			$(".right").append('<dl><dt><img src="'+imgsrc+'" alt="" width="430" height="430"></dt><dd>'+txt+'</dd><dd>'+money+'</dd></dl>');
+		//抛物线
+		//设置落脚点 
+		var last_l=$(".btn").offset().left,
+			last_t=$(".btn").offset().top;
+		// 起始点
+		var x=e.clientX,
+			y=e.clientY;
+		// 创建对象
+		var flyer=$('<img src="'+imgsrc+'" class="fly">');
+		// 抛物线的方法
+		flyer.fly({
+			start:{
+				left:x,
+				top:y
+			},end:{
+				left:last_l,
+				top:last_t,
+				width:20,
+				height:20
+			},onEnd:function(){
+				flyer.fadeOut('slow',function(){
+					$(this).remove();
+				})
+			}
+		});
+
+	})	
+</script>
+</html>
